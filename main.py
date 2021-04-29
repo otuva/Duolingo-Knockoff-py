@@ -9,7 +9,6 @@ from PIL import Image
 from pygame import mixer as mi
 import datetime
 import os
-import snake_game
 
 root = Tk()
 answer_list = []
@@ -47,7 +46,7 @@ class Main:
 
         # to prevent errors defined under init
         img = None
-        self.sound_pic = ImageTk.PhotoImage(Image.open(self.resource_path("../img/sound.png")).resize((25,20)))
+        self.sound_pic = ImageTk.PhotoImage(Image.open(self.resource_path("img/sound.png")).resize((25,20)))
         self.number_text = Label(root, text=str(image_names.counter)+"/20")
         self.label_image = Label(root, image=img)
         self.answer = StringVar()
@@ -90,10 +89,6 @@ class Main:
                 texts.insert(x,str(x+1) + "- '"+ answer_list[x] + "' cevabın yanlış. Doğru cevap: " + german[x])
             if results[x] == 10:
                 texts.insert(x,str(x+1) + "- Boş bıraktın. Doğru cevap: " + german[x])
-
-    def easter_egg(self):
-        snake_game.main()
-        root.quit()
 
     def true_false_screen(self):
         current = image_names.counter - 1
@@ -153,7 +148,7 @@ class Main:
 
     def name_counter(self):
         image_names.counter += 1
-        img = ImageTk.PhotoImage(Image.open(self.resource_path("../img/{}.png".format(image_names.counter))).resize((500, 400)))
+        img = ImageTk.PhotoImage(Image.open(self.resource_path("img/{}.png".format(image_names.counter))).resize((500, 400)))
 
         self.label_image.configure(image=img)
         self.label_image.image = img
@@ -178,7 +173,7 @@ class Main:
         buttonframe = Frame(root)
         buttonframe.grid(row=2, column=1,sticky="w")
 
-        img = ImageTk.PhotoImage(Image.open(self.resource_path("../img/{}.png".format(self.name_counter()))).resize((500, 400)))
+        img = ImageTk.PhotoImage(Image.open(self.resource_path("img/{}.png".format(self.name_counter()))).resize((500, 400)))
 
         self.label_image = Label(root, image=img)
         self.label_image.image = img  # keep a reference
@@ -366,20 +361,17 @@ class Main:
         tme = Label(root, text=crono, font=(None, 13))
         tme.grid(row=2,column=1)
 
-        b1 = Button(root,text="< Önceki sayfa", font=(None,13), command=(lambda: (l1.grid_forget(), tf_ratio.grid_forget(), tme.grid_forget(), b1.grid_forget(),b2.grid_forget(),b3.grid_forget(),easter_egg.grid_forget(), sign_text.grid_forget(), self.final_page())))
+        b1 = Button(root,text="< Önceki sayfa", font=(None,13), command=(lambda: (l1.grid_forget(), tf_ratio.grid_forget(), tme.grid_forget(), b1.grid_forget(),b2.grid_forget(),b3.grid_forget(), sign_text.grid_forget(), self.final_page())))
         b1.grid(row=3, column=0, rowspan=5, sticky="sw", pady=320)
 
-        b2 = Button(root,text="Ana menü ↺", font=(None,14),command=(lambda: (l1.grid_forget(), tf_ratio.grid_forget(), tme.grid_forget(), b1.grid_forget(),b2.grid_forget(),b3.grid_forget(),easter_egg.grid_forget(), sign_text.grid_forget(),self.__init__())))
+        b2 = Button(root,text="Ana menü ↺", font=(None,14),command=(lambda: (l1.grid_forget(), tf_ratio.grid_forget(), tme.grid_forget(), b1.grid_forget(),b2.grid_forget(),b3.grid_forget(), sign_text.grid_forget(),self.__init__())))
         b2.grid(row=3,column=1,pady=320, padx=60)
 
         b3 = Button(root,text="Çıkış ✗", font=(None,14), command=root.quit)
         b3.grid(row=3,column=2,pady=120)
 
         sign_text = Label(root, text="2019-07 @ Onur Alp Akın")
-        sign_text.grid(row=0,column=0,rowspan=5,sticky="nw")
-
-        easter_egg = Button(root, text="🐍", font=(None,25), command=self.easter_egg)
-        easter_egg.grid(row=0,column=2,rowspan=5,sticky="n")
+        sign_text.grid(row=0, column=0, rowspan=5, sticky="nw")
 
 
 class Sounds:
@@ -387,87 +379,87 @@ class Sounds:
         mi.init()
 
     def t_f_screen(self):
-        mi.music.load(main.resource_path(str(image_names.counter) + ".ogg"))
+        mi.music.load(main.resource_path("sound/{}.ogg".format(image_names.counter)))
         mi.music.play()
 
     def s0(self):
-        mi.music.load(main.resource_path("1.ogg"))
+        mi.music.load(main.resource_path("sound/1.ogg"))
         mi.music.play()
 
     def s1(self):
-        mi.music.load(main.resource_path("2.ogg"))
+        mi.music.load(main.resource_path("sound/2.ogg"))
         mi.music.play()
 
     def s2(self):
-        mi.music.load(main.resource_path("3.ogg"))
+        mi.music.load(main.resource_path("sound/3.ogg"))
         mi.music.play()
 
     def s3(self):
-        mi.music.load(main.resource_path("4.ogg"))
+        mi.music.load(main.resource_path("sound/4.ogg"))
         mi.music.play()
 
     def s4(self):
-        mi.music.load(main.resource_path("5.ogg"))
+        mi.music.load(main.resource_path("sound/5.ogg"))
         mi.music.play()
 
     def s5(self):
-        mi.music.load(main.resource_path("6.ogg"))
+        mi.music.load(main.resource_path("sound/6.ogg"))
         mi.music.play()
 
     def s6(self):
-        mi.music.load(main.resource_path("7.ogg"))
+        mi.music.load(main.resource_path("sound/7.ogg"))
         mi.music.play()
 
     def s7(self):
-        mi.music.load(main.resource_path("8.ogg"))
+        mi.music.load(main.resource_path("sound/8.ogg"))
         mi.music.play()
 
     def s8(self):
-        mi.music.load(main.resource_path("9.ogg"))
+        mi.music.load(main.resource_path("sound/9.ogg"))
         mi.music.play()
 
     def s9(self):
-        mi.music.load(main.resource_path("10.ogg"))
+        mi.music.load(main.resource_path("sound/10.ogg"))
         mi.music.play()
 
     def s10(self):
-        mi.music.load(main.resource_path("11.ogg"))
+        mi.music.load(main.resource_path("sound/11.ogg"))
         mi.music.play()
 
     def s11(self):
-        mi.music.load(main.resource_path("12.ogg"))
+        mi.music.load(main.resource_path("sound/12.ogg"))
         mi.music.play()
 
     def s12(self):
-        mi.music.load(main.resource_path("13.ogg"))
+        mi.music.load(main.resource_path("sound/13.ogg"))
         mi.music.play()
 
     def s13(self):
-        mi.music.load(main.resource_path("14.ogg"))
+        mi.music.load(main.resource_path("sound/14.ogg"))
         mi.music.play()
 
     def s14(self):
-        mi.music.load(main.resource_path("15.ogg"))
+        mi.music.load(main.resource_path("sound/15.ogg"))
         mi.music.play()
 
     def s15(self):
-        mi.music.load(main.resource_path("16.ogg"))
+        mi.music.load(main.resource_path("sound/16.ogg"))
         mi.music.play()
 
     def s16(self):
-        mi.music.load(main.resource_path("17.ogg"))
+        mi.music.load(main.resource_path("sound/17.ogg"))
         mi.music.play()
 
     def s17(self):
-        mi.music.load(main.resource_path("18.ogg"))
+        mi.music.load(main.resource_path("sound/18.ogg"))
         mi.music.play()
 
     def s18(self):
-        mi.music.load(main.resource_path("19.ogg"))
+        mi.music.load(main.resource_path("sound/19.ogg"))
         mi.music.play()
 
     def s19(self):
-        mi.music.load(main.resource_path("20.ogg"))
+        mi.music.load(main.resource_path("sound/20.ogg"))
         mi.music.play()
 
 
